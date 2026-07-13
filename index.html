@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atrevidas — Paula Quinaud</title>
+    <style>
+        /* ==========================================================================
+           1. VARIÁVEIS - ESTÉTICA BRUTALISTA DE LUXO (ATREVIDAS)
+           ========================================================================== */
+        :root {
+            --bg-dark: #0D1112;          /* Preto Carbono - Peso e mistério */
+            --bg-light: #EAE7E2;         /* Concreto Claro - Contraste industrial */
+            --text-light: #F5F5F5;
+            --text-dark: #111618;
+            --gold-foil: #D4AF37;        /* Ouro Escovado - O sotaque audacioso */
+            --gold-gradient: linear-gradient(135deg, #BFA17F 0%, #D4AF37 50%, #8A6D3B 100%);
+            --font-serif: 'Georgia', 'Times New Roman', serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --transition-sharp: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* ==========================================================================
+           2. HERO SECTION - ASYMMETRIC SPLIT GRID (DARK MODE)
+           ========================================================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Texto gigante de fundo simulando intervenção urbana */
+        .bg-watermark {
+            position: absolute;
+            font-size: 15vw;
+            font-family: var(--font-serif);
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            text-transform: uppercase;
+            white-space: nowrap;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-5deg);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .hero-tagline {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--gold-foil);
+            margin-bottom: 20px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+
+        .hero-title span {
+            display: block;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--gold-foil);
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #8A9597;
+            max-width: 500px;
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* NOVO MOCKUP 3D - ATREVIDAS EDITION (PRETO + OURO) */
+        .scene {
+            width: 240px;
+            height: 350px;
+            perspective: 1200px;
+            justify-self: center;
+        }
+
+        .book-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(-28deg) rotateX(12deg);
+            transition: transform 0.8s var(--transition-sharp);
+        }
+
+        .scene:hover .book-3d {
+            transform: rotateY(-8deg) rotateX(4deg);
+        }
+
+        .book-cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #14191B; /* Capa escura fosca */
+            border-radius: 2px 6px 6px 2px;
+            box-shadow: 20px 20px 40px rgba(0,0,0,0.6);
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        /* Detalhe Bold: A faixa vertical em Hot Stamping Dourado */
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 25px;
+            width: 12px; height: 100%;
+            background: var(--gold-gradient);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Texto minimalista na capa do mockup */
+        .book-cover::after {
+            content: 'ATREVIDAS';
+            position: absolute;
+            bottom: 40px; left: 50px;
+            font-family: var(--font-serif);
+            color: #fff;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+        }
+
+        .book-spine {
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            background: #090C0D;
+            left: 0;
+            transform: rotateY(-90deg) translateZ(15px);
+        }
+
+        /* ACTION BLOCK PREMIUM */
+        .action-block {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .price-box .amount {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .price-box .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #626E71;
+            letter-spacing: 1px;
+        }
+
+        .cta-brutalist {
+            background: var(--gold-gradient);
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 20px 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            border-radius: 0; /* Totalmente quadrado, traço brutalista */
+            transition: opacity 0.3s ease, transform 0.3s var(--transition-sharp);
+        }
+
+        .cta-brutalist:hover {
+            transform: scale(1.03);
+            opacity: 0.95;
+        }
+
+        /* ==========================================================================
+           3. MANIFESTO SECTION - CONTRASTE DE IMPACTO (LIGHT MODE)
+           ========================================================================== */
+        .manifesto {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding: 120px 0;
+        }
+
+        .manifesto-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .manifesto-grid {
+                grid-template-columns: 0.8fr 1.2fr;
+            }
+        }
+
+        .manifesto-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-dark);
+            border-left: 3px solid var(--gold-foil);
+            padding-left: 15px;
+            height: fit-content;
+        }
+
+        .manifesto-quote {
+            font-family: var(--font-serif);
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            line-height: 1.4;
+            font-weight: 400;
+            text-align: justify;
+        }
+
+        /* ==========================================================================
+           4. STICKY BOTTOM BAR (MOBILE ONLY)
+           ========================================================================== */
+        .sticky-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(13, 17, 18, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 16px 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .sticky-bar .cta-brutalist {
+            padding: 14px 24px;
+            font-size: 0.8rem;
+        }
+
+        @media (min-width: 768px) {
+            .sticky-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-watermark">ATREVIDAS</div>
+
+    <!-- HERO ASSIMÉTRICO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                
+                <div class="hero-content">
+                    <span class="hero-tagline">Antologia Impostora</span>
+                    <h1 class="hero-title">Atrevidas<span>Manifesto Visual & Escrito</span></h1>
+                    <p class="hero-description">
+                        Uma obra de ruptura. Um manifesto literário que desafia o espaço, a forma e as expectativas sociais. Um livro projetado para impactar e provocar o leitor a cada quebra de página.
+                    </p>
+                    
+                    <div class="action-block">
+                        <div class="price-box">
+                            <p class="label">Volume Único</p>
+                            <p class="amount">R$ 55</p>
+                        </div>
+                        <a href="#comprar" class="cta-brutalist">Garantir Obra</a>
+                    </div>
+                </div>
+
+                <!-- MOCKUP 3D BLACK & GOLD -->
+                <div class="scene">
+                    <div class="book-3d">
+                        <div class="book-cover"></div>
+                        <div class="book-spine"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MANIFESTO DE ALTO CONTRASTE (LIGHT) -->
+    <section class="manifesto">
+        <div class="container">
+            <div class="manifesto-grid">
+                <div class="manifesto-label">O Conceito</div>
+                <div class="manifesto-quote">
+                    "Atrevidas não pede licença para ocupar a mesa. É uma arquitetura de palavras fortes, feitas para quem entende que o design e a literatura existem para desestabilizar o óbvio."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STICKY CTA MOBILE -->
+    <div class="sticky-bar">
+        <div>
+            <p style="font-size: 0.7rem; text-transform: uppercase; color: #626E71;">Atrevidas</p>
+            <p style="font-family: var(--font-serif); font-weight: 700;">R$ 55,00</p>
+        </div>
+        <a href="#comprar" class="cta-brutalist">Comprar</a>
+    </div>
+
+</body>
+</html>
